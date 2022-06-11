@@ -14,7 +14,8 @@ app.use(express.json());
     // app.use('/',(req,res,next)=>{
     //   res.send("this is our starting app");
     // })
- app.use("/books",router); //localhost:5000/courses
+  app.use(express.json());  
+ app.use("/courses",router); //localhost:5000/courses
 
 
 // get driver connection
