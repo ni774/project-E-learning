@@ -10,7 +10,7 @@ const Course = (props) => (
  </tr>
 );
  
-export default function Courses() {
+export default function Courseslist() {
  const [courses, setCourses] = useState([]);
  
  // This method fetches the records from the database.
@@ -33,5 +33,20 @@ export default function Courses() {
    return;
  }, [courses.length]);
  
- 
+ return (
+  <div>
+    <h3>Course List</h3>
+    <table className="table table-striped" style={{ marginTop: 20 }}>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>author</th>
+          <th>description</th>
+          <th>price</th>
+        </tr>
+      </thead>
+      <tbody>{Courseslist()}</tbody>
+    </table>
+  </div>
+);
 }

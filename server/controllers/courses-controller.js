@@ -35,7 +35,7 @@ const addCourse = async(req,res,next)=>{
     const{name,author,description,price,image}=req.body;
     let course;
     try{
-        course= new course({
+        course= new Course({
             name,
             author,
             description,
