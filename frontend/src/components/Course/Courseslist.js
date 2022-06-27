@@ -25,7 +25,7 @@ export default function Courseslist() {
      }
  
      const courses = await response.json();
-     setCourses(courses);
+     setCourses(course);
    }
  
    getCourses();

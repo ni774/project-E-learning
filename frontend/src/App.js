@@ -7,7 +7,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import AddCourse from "./components/AddCourse";
 import Navbar from "./components/Navbar";
-import Courseslist from "./components/Course/Courseslist";
+// import Courseslist from "./components/Course/Courseslist";
 const App = () => {
  return (
    <div>
@@ -15,7 +15,7 @@ const App = () => {
      <Routes>
          <Route path="/" element={<Home/>}exact/>
          <Route path="/add" element={<AddCourse/>}exact/>
-         <Route path="/courseslist" element={<Courseslist/>}exact/>
+         {/* <Route path="/courseslist" element={<Courseslist/>}exact/> */}
      </Routes>
    </div>
  );

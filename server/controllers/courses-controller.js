@@ -32,6 +32,7 @@ const getAllCourses = async(req,res,next)=>{
 // }
 
 const addCourse = async(req,res,next)=>{
+    console.log("inside add");
     const{name,author,description,price,image}=req.body;
     let course;
     try{
@@ -42,6 +43,7 @@ const addCourse = async(req,res,next)=>{
             price,
             image
         });
+        console.log(course);
         await course.save();
     } catch(err){
         console.log(err);
