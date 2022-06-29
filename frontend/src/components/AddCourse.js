@@ -102,7 +102,7 @@ import { useNavigate } from 'react-router-dom';
 // }
 
 const AddCourse=()=>{
-  // const history = useNavigate();
+  const history = useNavigate();
   const [form, setForm] = useState({
        name: "",
        author: "",
@@ -152,8 +152,8 @@ const AddCourse=()=>{
        e.preventDefault();
        console.log(form);
        sendRequest();
-      //  sendRequest().then(()=>history('/')).catch(e=>{
-      //    console.log(e)});
+       sendRequest().then(()=>history('/')).catch(e=>{
+         console.log(e)});
      };
   return (
   <form onSubmit={handleSubmit}>

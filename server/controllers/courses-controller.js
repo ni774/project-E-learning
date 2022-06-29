@@ -5,7 +5,10 @@ const Course = require("../model/Course");
 const getAllCourses = async(req,res,next)=>{
     let courses;
     try {
-        courses = await Course.find();
+        courses = await Course.find()
+
+        console.log(courses);
+      
     } catch(err){
         console.log(err);
      }
@@ -14,7 +17,17 @@ const getAllCourses = async(req,res,next)=>{
          return res.status(404).json({message:"No courses found"})
      }
      return res.status(200).json({courses});
-}
+//     recordRoutes.route("/record").get(function (req, res) {
+//         let db_connect = dbo.getDb("employees");
+//         db_connect
+//           .collection("records")
+//           .find({})
+//           .toArray(function (err, result) {
+//             if (err) throw err;
+//             res.json(result);
+//           });
+//        });
+ }
 
 // const getById = async(req,res,next)=>{
 //     const id = req.params.id;

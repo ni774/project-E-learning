@@ -1,0 +1,13 @@
+.card-body{
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-around;
+ }
+ .card{
+     width: 16em;
+     height: 14em;
+    
+     margin: 1em;
+     background-color: #cfd0cf82;
+     box-shadow: rebeccapurple 2px 1px;
+ }
