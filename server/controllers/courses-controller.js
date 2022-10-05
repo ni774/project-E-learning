@@ -7,7 +7,7 @@ const getAllCourses = async(req,res,next)=>{
     try {
         courses = await Course.find()
 
-        console.log(courses);
+        // console.log(courses);
       
     } catch(err){
         console.log(err);
@@ -45,7 +45,7 @@ const getAllCourses = async(req,res,next)=>{
 // }
 
 const addCourse = async(req,res,next)=>{
-    console.log("inside add");
+
     const{name,author,description,price,image}=req.body;
     let course;
     try{
