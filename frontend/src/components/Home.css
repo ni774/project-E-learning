@@ -1,0 +1,15 @@
+.main_header{
+   background-image: url("./background.jpg");
+   background-size: cover;
+   /* background-color:rgb(99, 90, 99); */
+   height:93vh;
+}
+/* #container{
+    background-color: aquamarine;
+    justify-content: center;
+    color:red;
+} */
+h1{
+    align-items: center;
+    color: red;
+}

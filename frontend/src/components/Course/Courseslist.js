@@ -1,32 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import "./Courseslist.css";
  
-// const Course = (props) => (
-//  <div className="card">
-//    <h1>{props.course.name}</h1>
-//    <h3>{props.course.auther}</h3>
-//    <h3>{props.course.description}</h3>
-//    <h2>{props.course.price}</h2>
-//    <div>
-//      <Link className="btn btn-link" to={`/edit/${props.course._id}`}>Edit</Link> |
-//      <button className="btn btn-link"
-//        onClick={() => {
-//          props.deletecourse(props.course._id);
-//        }}
-//      >
-//        Delete
-//      </button>
-//    </div>
-//  </div>
-// );
+
  
 // export default function Courseslist() {
 //  const [courses, setcourses] = useState([]);
  
  // This method fetches the courses from the database.
 
-
+ const Record = (props) => (
+  <div className="card">
+    <h1>{props.record.name}</h1>
+    <h4>{props.record.description}</h4>
+    <h2>{props.record.price}</h2>
+    <h3>{props.record.author}</h3>
+    <button className="course-button">View</button>
+  </div>
+ );
 
 
 export default function Courseslist() {
@@ -41,10 +32,12 @@ export default function Courseslist() {
         return;
       }
   
-      const courses = await response.json();
-     const result=Object.entries(courses);    // for convert to array
-      setcourses(result[0]);
-     console.log(result[0]);
+      const course = await response.json();
+    //  const result=Object.entries(courses);    // for convert to array
+    const courses= course.courses;
+      setcourses(courses);
+     console.log(courses);
+     
      
      
     }
@@ -52,19 +45,33 @@ export default function Courseslist() {
     getCourses();
   
     return;
-  }, []);
+  },[]);
+
+  function recordList() {
+    return courses.map((record) => {
+      return (
+        <Record
+          record={record}
+          key={record._id}
+        />
+      );
+    });
+  }
+
   return (
     <div>
       courses are here
        <div className="card-body">
-         {courses.map((product)=>{
+      
+         {/* {courses.map((product)=>{
             <div className="card">
               <h1>{product.name}</h1>
               <h4>{product.description}</h4>
               <h2>{product.author}</h2>
               <h1>{product.price}</h1>
             </div>
-          })}
+          })} */}
+         {recordList()}
        </div>
 
     </div>
@@ -81,7 +88,14 @@ export default function Courseslist() {
 //    const newcourse = courses.filter((el) => el._id !== id);
 //    setcourses(newcourse);
 //  }
- 
+  /* {courses.map((product)=>{
+            <div className="card">
+              <h1>{product.name}</h1>
+              <h4>{product.description}</h4>
+              <h2>{product.author}</h2>
+              <h1>{product.price}</h1>
+            </div>
+          })} */
 //  // This method will map out the courses on the table
 //  function courseList() {
 //    return courses.map((course) => {

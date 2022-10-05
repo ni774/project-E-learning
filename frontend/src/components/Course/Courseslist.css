@@ -2,12 +2,18 @@
     display: flex;
     flex-wrap: wrap; 
     justify-content: space-around;
+    width: 70em;
  }
  .card{
      width: 16em;
-     height: 14em;
+     height: 16em;
     
-     margin: 1em;
+     margin: 2.8em;
      background-color: #cfd0cf82;
      box-shadow: rebeccapurple 2px 1px;
+ }
+ .course-button{
+     margin-top: 2em;
+     background-color: blue;
+     color:white;
  }

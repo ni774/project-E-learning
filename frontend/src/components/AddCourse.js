@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-//import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 // import { useNavigate } from "react-router";
  
@@ -122,7 +121,7 @@ const AddCourse=()=>{
            return setForm((prev) => {
              return { ...prev, ...value };
            });
-         }
+    }
 
       const sendRequest = async()=>{
       //   await axios.post("http://localhost:5000/courses",{
@@ -168,7 +167,7 @@ const AddCourse=()=>{
           />
         </div>
         <div className="form-group">
-          <label htmlFor="position">author</label>
+          <label htmlFor="position">creator</label>
           <input
             type="text"
             className="form-control"
