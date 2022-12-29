@@ -13,38 +13,6 @@ app.use(express.json());
     //   res.send("this is our starting app");
     // })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   app.use(express.json());  
  app.use("/courses",router); //localhost:5000/courses
  app.use("/users", userrouter);  //localhost:5000/users

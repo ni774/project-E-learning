@@ -20,6 +20,7 @@ const signup = async (req, res, next) => {
   const { name, email, password } = req.body;
 
   let existingUser;
+  //first find that if user already exist
   try {
     existingUser = await User.findOne({ email });
   } catch (err) {
@@ -30,6 +31,7 @@ const signup = async (req, res, next) => {
   }
   
                        //   const hashedPassword = bycrypt.hashSync(password);
+  //make object to push user in database first
   const user = new User ({
     name,
     email,
@@ -46,14 +48,18 @@ const signup = async (req, res, next) => {
 };
      
    //for login first retrieve info from db and match with frontend data if matched then login
+  
 const login = async (req, res, next) => {
   const { email, password } = req.body;
   console.log(email);
   console.log(password);
   let existingUser;
   try {
+    console.log("email is finding");
     existingUser = await User.findOne({ email });
+    console.log(existingUser);
   } catch (err) {
+    console.log("reject")
     return console.log(err);
   }
   if (!existingUser) {

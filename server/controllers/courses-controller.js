@@ -45,9 +45,10 @@ const getAllCourses = async(req,res,next)=>{
 // }
 
 const addCourse = async(req,res,next)=>{
-
+     //get data from req means frontend
     const{name,author,description,price,image}=req.body;
     let course;
+    //make object to push in database
     try{
         course= new Course({
             name,

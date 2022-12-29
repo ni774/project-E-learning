@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800');
+* {
+  box-sizing: border-box;
+}
+body {
+  background: #1C8EF9 !important;
+  min-height: 100vh;
+  display: flex;
+  font-weight: 400;
+  font-family: 'Fira Sans', sans-serif;
+}
+#form-container{
+    background-color: white;
+    margin: 5em auto;
+    display: flex;
+    width: 30em;
+    height: 27em;
+    border-radius: 2em;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    align-items: center;
+}
+form{
+    padding: 0;
+
+}

@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";  
 // import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 // import { async } from "@firebase/util";
-
-
-
+import "./login.css";
 
 export default function Login(){
     // const auth=getAuth();
+    const [loginState,setLoginState]=useState(true);
     const history=useNavigate();
     const [values,setValues]=useState(
         {
@@ -42,6 +41,7 @@ export default function Login(){
          window.alert("user doesn't exist or wrong email & password");
        }else{
         history('/courseslist');
+         setLoginState(true);
          window.alert("login succesfully");
          
        }
@@ -64,39 +64,45 @@ export default function Login(){
 
     };
     return(
-        <div>
+         <div id="form-container">
+            
             <form onSubmit={handleSubmitButton}>
-            <label>
-                    email: <input type="text" placeholder="enter your email"
-                     className="form-control"
-                     id="email"
-                     value={values.email}
-                     onChange={(e)=>updateUser({email: e.target.value})}
-                               
-                    />
-                </label>
-                <label>
-                    password: 
-                    <input type="text" placeholder="enter your password"
-                     className="form-control"
-                     id="password"
-                     value={values.password}
-                     onChange={
-                       (e)=>updateUser({password: e.target.value})}
-                    />
-                </label>
-                <div className="form-group">
-                  <input
-                    type="submit"
-                    value="login"
-                    className="btn btn-primary"
-                  />
-                </div>
-              
+               <h1>sign in</h1>
+              <div className="mb-3">
+                    <label> email:</label> 
+                      <input type="text" placeholder="enter your email"
+                      className="form-control"
+                      id="email"
+                      value={values.email}
+                      onChange={(e)=>updateUser({email: e.target.value})}
+                                
+                      />
+              </div>
+              <div>
+                    <label>
+                        password: 
+                    </label>
+                      <input type="text" placeholder="enter your password"
+                      className="form-control"
+                      id="password"
+                      value={values.password}
+                      onChange={
+                        (e)=>updateUser({password: e.target.value})}
+                      />
+              </div>
+              <div className="form-group">
+                <input
+                  type="submit"
+                  value="login"
+                  className="btn btn-primary"
+                />
+              </div>
+              <div>create Account <Link to="/register">Register</Link></div>
+              <p>{errorMsg}</p>
             </form>
-             <div>create Account <Link to="/register">Register</Link></div>
-             <p>{errorMsg}</p>
-         </div>
+        
+             
+         </div> 
 
     );
 }

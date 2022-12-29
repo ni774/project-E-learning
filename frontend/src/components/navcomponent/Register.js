@@ -1,6 +1,7 @@
 import React,{ useState }from 'react';
 import { Link } from "react-router-dom";  
 import {useNavigate} from 'react-router-dom'
+import "./login.css";
 
 
 export default function Register() {
@@ -55,11 +56,12 @@ export default function Register() {
           });   
     };
     return (
-        <div>
-          <h1>Register here!</h1>
+        <div id="form-container">
+          
             <form onSubmit={handleSubmit}>
-                <label>
-                    Name: 
+                <h1>Register here!</h1>
+                <div>
+                   <label> Name: </label>
                     <input type="text" placeholder="enter your name" 
                       className="form-control"
                       id="name"
@@ -67,18 +69,19 @@ export default function Register() {
                       onChange={
                         (e)=>updateUser({name: e.target.value})}
                     />
-                </label>
-                <label>
-                    email: <input type="text" placeholder="enter your email"
+                </div>
+                <div>
+                    <label>email: </label>
+                     <input type="text" placeholder="enter your email"
                      className="form-control"
                      id="email"
                      value={user.email}
                      onChange={(e)=>updateUser({email: e.target.value})}
                                
                     />
-                </label>
-                <label>
-                    password: 
+                </div>
+                <div>
+                    <label>password: </label>
                     <input type="text" placeholder="enter your password"
                      className="form-control"
                      id="password"
@@ -86,7 +89,7 @@ export default function Register() {
                      onChange={
                        (e)=>updateUser({password: e.target.value})}
                     />
-                </label>
+                </div>
                 <div className="form-group">
                   <input
                     type="submit"
@@ -94,9 +97,10 @@ export default function Register() {
                     className="btn btn-primary"
                   />
                 </div>
-            </form>
-            <p>{errorMsg}</p>
+                <p>{errorMsg}</p>
             <div>if Already Register ? <Link to="/login" >Login</Link></div>
+            </form>
+            
 
         </div>
     );
