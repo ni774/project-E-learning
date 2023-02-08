@@ -4,7 +4,7 @@ import "./Navbar.css";
 import logo from "./img/logo1.png";
 function Navbar(){
     return(
-        <div><nav className="navbar navbar-expand-lg bg-dark">
+        <div id="nav"><nav className="navbar navbar-expand-lg bg-dark">
         <div className="container-fluid">
           <div className="collapse navbar-collapse" id="navbarText">
             <img className="logo" src={logo} alt="cant show img"/>

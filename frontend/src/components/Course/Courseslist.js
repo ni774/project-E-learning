@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 // import { Link } from "react-router-dom";
 import "./Courseslist.css";
 
@@ -9,6 +9,8 @@ const Record = (props) => (
     <div className="img">
       <img src={props.record.thumbnail} alt=" error " />
     </div>
+      <Link id="delete" to="/delete">delete</Link>
+    
     <h1>{props.record.name}</h1>
     <h6 id="description">{props.record.description}</h6>
     <h6 id="auther">{props.record.author}</h6>

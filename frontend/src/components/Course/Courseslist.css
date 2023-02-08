@@ -12,6 +12,11 @@ html{
     justify-content: space-around;
     width: 85em;
  }
+ #delete{
+     position: absolute;
+     top:1px;
+     left:13.5em;
+ }
  .card{
      width: 17em;
      height: 26em;
