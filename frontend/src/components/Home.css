@@ -1,5 +1,8 @@
+/* *{
+    overflow: hidden;
+} */
 .main_header{
-   background-image: url("./background.jpg");
+   background-image: url("./img/bg2.jpg");
    background-size: cover;
    height:93vh;
 }
@@ -7,4 +10,52 @@
 h1{
     align-items: center;
     color: blue;
+}
+/* .container{
+height: 10vh;
+width: 70vh;
+display: flex;
+justify-content: center;
+align-items: center;
+position: relative;
+top: 10em;
+} */
+.home-button{
+    background-color:#ec2b2b;
+    border-radius: 13px;
+    display: flex;
+    width: 30vh;
+    height: 8vh;
+    align-items: center;
+    position: absolute;
+    top: 18em;
+    left: 38em;
+    
+}  
+ .home_link{
+        text-decoration: none;
+        text-decoration-color: white;
+        color: white;
+        display: flex;
+        margin:auto; 
+        justify-content:center;
+        align-items: center;
+    }
+.home-button:hover, .home_link:hover{
+    background-color: antiquewhite;
+    color:red;
+    transition: all .2s ease-in
+}
+
+.home-content{
+    width: 27em;
+    position: absolute;
+    top: 10em;
+    left: 1em;
+}
+.home-content h2{
+    color: yellow;
+}
+.home-content h6{
+    color: aliceblue;
 }

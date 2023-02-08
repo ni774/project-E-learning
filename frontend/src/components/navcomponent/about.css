@@ -1,0 +1,56 @@
+#p1{
+     background-color: aliceblue;
+     background-image:url("https://rb.gy/ustx2k");
+     background-size:cover;
+     opacity:0.8;
+     
+     height:70vh;
+     border-bottom:1.5px solid rgb(48, 41, 41);
+     /* float:right; */
+}
+#p1 span{
+    float: left;
+    color: black;
+    font-size: 3em;
+    margin-top: 3em;
+    margin-left: 1em; 
+    /* border:3px solid red; */
+    border-radius: 22%;
+    background-color: rgb(222, 228, 233);
+}
+#p2{
+    background-color: aliceblue;
+    height:67vh;
+    border-bottom:1.5px solid rgb(48, 41, 41);
+}
+#p2 > div{
+    color: black;
+    width: 30px;
+    height: 20px;
+    float:left;
+}
+#services-list > ul > li{
+    margin-top:1.5em;
+    font-size: 1.5rem;
+}
+.about-container{
+    overflow: scroll;
+    overflow-x: hidden;
+}
+#about-content{
+    width: 50%;
+    float:right;
+    text-align: center;
+    margin-top: 4em;
+}
+#about-footer{
+    background-color: aliceblue;
+    height: 38vh;
+    text-align: center;
+    
+}
+#about-footer >li{
+    list-style-type:square;
+    margin-top: .8em;
+    font-weight: bold;
+}

@@ -10,8 +10,10 @@
     "react": "^16.8.0-alpha.1",
     "react-bootstrap": "^2.4.0",
     "react-dom": "^16.8.0-alpha.1",
+    "react-router": "^6.8.0",
     "react-router-dom": "^6.2.1",
     "react-scripts": "1.0.14",
+    "react-simple-image-slider": "^2.4.1",
     "typewriter-effect": "^2.18.2"
   },
   "scripts": {

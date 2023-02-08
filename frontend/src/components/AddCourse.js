@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import "./navcomponent/login.css";
+import "./addCourse.css";
 
 const AddCourse=()=>{
   const history = useNavigate();
@@ -8,6 +9,7 @@ const AddCourse=()=>{
        name: "",
        author: "",
        description: "",
+       thumbnail: "",
        price:"",
      });
     //  const handleChange=(e)=>{                
@@ -58,7 +60,7 @@ const AddCourse=()=>{
      };
   return (
   <div id="form-container">
-
+    <h2 className="add-title">New course</h2>
       <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="name">Name</label>
@@ -88,6 +90,16 @@ const AddCourse=()=>{
                 id="description"
                 value={form.description}
                 onChange={(e) => updateForm({ description: e.target.value })}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="name">thumbnail</label>
+              <input
+                type="text"
+                className="form-control"
+                id="thumbnail"
+                value={form.thumbnail}
+                onChange={(e) => updateForm({ thumbnail: e.target.value })}
               />
             </div>
             <div className="form-group">

@@ -1,4 +1,52 @@
-.space{
-    margin-left:66em;
+/* .space{
+    margin-left:64em;
     margin-right:3em;
+} */
+/* .home{
+    position: absolute;
+    left: 55em;
+} */
+.navbar{
+    width: 85em;
+    height: 8.5vh;
+    /* overflow: hidden; */
+
+}
+ul{
+    margin-left: 3em;
+    padding-top: 0%;
+    
+}
+.login{
+    margin-left: 35em;
+}
+.logout{
+    padding-left: 0%;
+    margin-left: .4em;
+}
+ul li{
+    float:left;
+    text-align: center;
+    margin: 0 2em;
+    height:6vh;
+    width: max-content;
+    position: relative;
+    bottom: .4em;
+    
+}
+.logo{
+    width: 11em;
+  margin: -40px -1em;
+  padding: -1px;
+  border: 0;
+  overflow: hidden;
+  position: relative;
+  top: 0.7em;
+  left: -2em;
+}
+.nav-item:hover{
+    border-bottom: 1px solid red;
+}
+li.active{
+    color: red;
 }

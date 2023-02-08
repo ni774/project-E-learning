@@ -6,7 +6,7 @@ import "./login.css";
 
 export default function Login(){
     // const auth=getAuth();
-    const [loginState,setLoginState]=useState(true);
+    // const [loginState,setLoginState]=useState(true);
     const history=useNavigate();
     const [values,setValues]=useState(
         {
@@ -40,10 +40,11 @@ export default function Login(){
        if(res.status===404||!res){
          window.alert("user doesn't exist or wrong email & password");
        }else{
-        history('/courseslist');
-         setLoginState(true);
          window.alert("login succesfully");
-         
+         localStorage.setItem('login',true);
+         history('/courseslist');
+         window.location.reload();
+        //  setLoginState(true);
        }
        
      }

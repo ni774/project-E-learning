@@ -15,13 +15,14 @@ const courseSchema = new Schema({
         type:String,
         required:true
     },
+    thumbnail:{
+        type: String,
+    },
     price:{
         type:Number,
         required:true
     },
-    image:{
-        type: String,
-    },
+   
 });
 
 module.exports = mongoose.model("Course",courseSchema);

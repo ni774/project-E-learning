@@ -38,6 +38,7 @@ export default function Register() {
         window.alert("already register");
       }else{
         window.alert("registered succesfully");
+        history.pushState('/login');
       }
       
     }
