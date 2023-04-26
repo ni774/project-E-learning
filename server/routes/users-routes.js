@@ -5,9 +5,13 @@ const userController = require("../controllers/users-controllers");
 
 const dbo = require("../db/conn");
 
+// middile ware--
+const auth= require("../middileware/auth");
 router.post("/signup", userController.signup);
 router.post("/login", userController.login);
-router.get("/logout",userController.logout);
+router.delete("/removeuser/:id",userController.deleteUser);
+router.get("/getalluser",userController.getAllUser);
+router.get("/:id",userController.getById);
 
 
 module.exports = router;
