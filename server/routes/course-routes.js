@@ -7,12 +7,13 @@ const dbo = require("../db/conn");
 
 const auth= require("../middileware/auth");
 
-router.get("/",coursesController.getAllCourses);
+router.get("/",auth,coursesController.getAllCourses);
 
 
-router.post("/",coursesController.addCourse);
-router.get("/:id",coursesController.getById);
-router.put("/:id",coursesController.updateCourse);
+router.post("/",auth,coursesController.addCourse);
+router.get("/:id",auth,coursesController.getById);
+router.put("/:id",auth,coursesController.updateCourse);
+router.delete("/:id",auth,coursesController.deleteCourse);
 
 
 module.exports = router;

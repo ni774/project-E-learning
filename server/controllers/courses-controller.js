@@ -86,6 +86,25 @@ const updateCourse = async(req,res,next)=>{
     });
 }
 
+const deleteCourse= async(req,res)=>{
+    const {id}= req.params;
+    try{
+      const course = await Course.findByIdAndDelete(id);
+    
+      if(!course){
+        return res.status(400).json("course not found");
+      }
+      res.status(200).json({
+        success: true,
+        err: {},
+        message: "successfully deleted course"
+      })
+    } catch(err){
+      console.log(err);
+      return err;
+    }
+  }
+
 
 
 
@@ -93,3 +112,4 @@ exports.getAllCourses = getAllCourses;
 exports.addCourse = addCourse;
 exports.getById = getById;
 exports.updateCourse=updateCourse;
+exports.deleteCourse= deleteCourse;

@@ -28,14 +28,14 @@ const signup = async (req, res, next) => {
 
   let existingUser;
   //first find that if user already exist
-  console.log("here")
+  
   try {
     existingUser = await User.findOne({ email });
   } catch (err) {
     return console.log(err);
 
   }
-  console.log("kjdk")
+  
   if (existingUser) {
     return res.status(400).json({message: "User Already Exists! Login Instead"})
   }
@@ -91,7 +91,7 @@ const login = async (req, res) => {
   }
   else{
       try{
-        const token=await generateToken(existingUser);
+        const token=await generateToken(existingUser.email);
         // console.log("-----> res--",res);
         // res.cookie("jwt",token,{
         //   expires : new Date(Date.now()+60000), //24 hours

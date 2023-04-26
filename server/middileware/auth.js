@@ -7,9 +7,9 @@ const verifyToken=(req,res,next)=>{
     if(!token){
         return res.status(403).send("access token is required");
     }
-    console.log(token);
+    // console.log(token);
     try{
-        // const decoded = jwt.verify(req.cookies.jwt,process.env.SECRET_KEY);
+       
         const decode = jwt.verify(
             token, process.env.SECRET_KEY
         );
