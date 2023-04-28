@@ -9,9 +9,10 @@ const dbo = require("../db/conn");
 const auth= require("../middileware/auth");
 router.post("/signup", userController.signup);
 router.post("/login", userController.login);
-router.delete("/removeuser/:id",userController.deleteUser);
-router.get("/getalluser",userController.getAllUser);
-router.get("/:id",userController.getById);
+router.delete("/removeuser/:id",auth, userController.deleteUser);
+router.get("/getalluser",auth,userController.getAllUser);
+router.get("user/:id",userController.getById);
+router.get("/dashboard",auth, userController.getUserbymail);
 
 
 module.exports = router;

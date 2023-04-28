@@ -71,7 +71,7 @@ const login = async (req, res) => {
   let existingUser;
   try {
     // console.log("email is finding");
-    existingUser = await User.findOne({ email });
+    existingUser = await User.findOne({ email }); //or email: email but object destructuring handels
     console.log("mujhe mila",existingUser);
   } catch (err) {
     console.log(err);
@@ -92,16 +92,10 @@ const login = async (req, res) => {
   else{
       try{
         const token=await generateToken(existingUser.email);
-        // console.log("-----> res--",res);
-        // res.cookie("jwt",token,{
-        //   expires : new Date(Date.now()+60000), //24 hours
-        //   httpOnly : true
-        // })
-         
-        // console.log("cookies id-->",req.cookies.jwt);
+      
         return res.status(200).json({
           success:true,
-          data: token,
+          token: token,
           err:{},
           message: "Login Successful",
           // user: existingUser
@@ -135,7 +129,6 @@ const deleteUser= async(req,res)=>{
 }
 
 
-
 //generate token to verify user
 const generateToken=async function(user){
   try{
@@ -165,12 +158,36 @@ const getById = async(req,res,next)=>{
   return res.status(200).json({user});
 }
 
-
-
+//get data by email, which is extracted from token for the purpose of user dashboard
+const getUserbymail =async (req,res)=>{
+  const data = req.user.user;
+  let user;
+  try{
+    console.log("email is",data)
+    user = await User.findOne({email: data});
+  } catch(err){
+    console.log(err);
+    return err;
+  }
+  if(!user){
+    return res.status(404).json({message:"No user found"});
+  }
+  return res.status(200).json({
+    success: true,
+    data: {
+      name: user.name,
+      email: user.email,
+    },
+    message: "user succesfully fetched"
+  });
+  
+  
+}
 
 exports.signup = signup;
 exports.login = login;
 exports.getAllUser=getAllUser;
 exports.deleteUser = deleteUser;
 exports.getById = getById;
+exports.getUserbymail = getUserbymail;
 

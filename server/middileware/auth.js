@@ -13,6 +13,7 @@ const verifyToken=(req,res,next)=>{
         const decode = jwt.verify(
             token, process.env.SECRET_KEY
         );
+        // Add the 'decode' variable to the 'req' object which will be sent over other middileware request
         req.user = decode;
         console.log(decode);
         next();

@@ -24,14 +24,21 @@ const Record = (props) => (
 export default function Courseslist() {
   const [courses, setcourses] = useState([]);
   const history = useNavigate();
+  const token = localStorage.getItem("auth_token");
+  console.log("token-->",token);
   useEffect(() => {
     async function getCourses() {
       try {
-        const response = await fetch(`http://localhost:5000/courses/`);
+        const response = await fetch(`http://localhost:5000/courses/`,{
+          method: "get",
+          headers: {
+            'Authorization': `${token}`,
+        },
+        });
         const course = await response.json();
 
         //  const result=Object.entries(courses);    // for convert to array
-        const courses = course.courses;
+        let courses = course.courses;
         setcourses(courses);
         console.log(courses);
       } catch (err) {

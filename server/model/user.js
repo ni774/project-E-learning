@@ -18,14 +18,6 @@ const userSchema = new Schema({
     required: true,
     minlength: 8,
   },
-                                                    // tokens:[
-                                                           //   {
-                                                           //     token:{
-                                                           //       type: String,
-                                                           //       required: true,
-                                                           //     }
-                                                           //   }
-                                                           // ]
 //   courses: [{ type: mongoose.Types.ObjectId, ref: "Course", required: true }],
 },
 {timestamps:true}

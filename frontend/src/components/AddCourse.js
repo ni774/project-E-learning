@@ -12,6 +12,7 @@ const AddCourse=()=>{
        thumbnail: "",
        price:"",
      });
+  const token = localStorage.getItem("auth_token");
     //  const handleChange=(e)=>{                
     //   // e.persist();
     //    setForm((prevState)=>({
@@ -39,7 +40,7 @@ const AddCourse=()=>{
       await fetch("http://localhost:5000/courses/", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(form),
       })

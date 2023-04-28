@@ -15,3 +15,5 @@ And create course and access it.
 ## about page
 ![about-Elearning](https://user-images.githubusercontent.com/61626746/217614038-2d6594be-fc6f-46dd-8b75-4e0b83ea55b7.png)
 
+## do `npm update` 
+and it will update all outdated pakages and if mongodb any error comes eg. findOne related because of mongodb version simply do "npm update"
