@@ -1,39 +1,43 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-// import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Courseslist.css";
-
+import CourseDetail from "./CourseDetail";
 
 const Record = (props) => (
   <div className="card">
     <div className="img">
-      <img src={props.record.thumbnail} alt=" error " />
+      <img src="https://rb.gy/3p0ha" alt=" error " />
     </div>
-      <Link id="delete" to="/delete">delete</Link>
-    
     <h1>{props.record.name}</h1>
     <h6 id="description">{props.record.description}</h6>
     <h6 id="auther">{props.record.author}</h6>
-    <h2><span>&#8377;</span>{props.record.price}</h2>
-    
-    <button className="course-button">View</button>
+    <h2>
+      <span>&#8377;</span>
+      {props.record.price}
+    </h2>
+    <button
+      className="course-button"
+      onClick={() => props.onClick(props.record)}
+      
+    >
+      viewCourse
+    </button>
   </div>
 );
-
 
 export default function Courseslist() {
   const [courses, setcourses] = useState([]);
   const history = useNavigate();
   const token = localStorage.getItem("auth_token");
-  console.log("token-->",token);
+  console.log("token-->", token);
   useEffect(() => {
     async function getCourses() {
       try {
-        const response = await fetch(`http://localhost:5000/courses/`,{
+        const response = await fetch(`http://localhost:5000/courses/`, {
           method: "get",
           headers: {
-            'Authorization': `${token}`,
-        },
+            Authorization: `${token}`,
+          },
         });
         const course = await response.json();
 
@@ -44,13 +48,13 @@ export default function Courseslist() {
       } catch (err) {
         // const message = `An error occurred: ${response.statusText}`;
         // window.alert(message);
-        history('/login');
+        history("/login");
         return;
       }
 
       // if (!response.ok) {
 
-      // }   
+      // }
     }
 
     getCourses();
@@ -58,23 +62,26 @@ export default function Courseslist() {
     return;
   }, []);
 
+  function handleViewCourse(course) {
+    history("/coursedetail", { state: course });
+  }
+
   function recordList() {
-    return courses.map((record) => {
+    return courses.map((value) => {
       return (
         <Record
-          record={record}
-          key={record._id}
+          record={value}
+          key={value._id}
+          onClick={handleViewCourse}
         />
       );
     });
   }
+
   return (
     <div className="course-container">
       <h2>course---></h2>
-      <div className="card-body">
-        {recordList()}
-      </div>
-
+      <div className="card-body">{recordList()}</div>
     </div>
   );
 }

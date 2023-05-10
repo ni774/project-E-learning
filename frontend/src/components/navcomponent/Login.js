@@ -41,6 +41,7 @@ export default function Login() {
         window.alert("login succesfully");
         localStorage.setItem("login",true);
         history('/dashboard');
+        window.location.reload();
        
       }
 

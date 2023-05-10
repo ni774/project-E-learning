@@ -1,9 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800');
 
-.add-title{
-    color:blue;
-    position: absolute;
-    bottom: 12em;
-    left: 4em;
+#add-title{
+    color:white;
+    text-align: center;
     font-family: 'Fira Sans', sans-serif;
 }

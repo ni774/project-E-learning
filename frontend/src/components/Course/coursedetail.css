@@ -1,0 +1,36 @@
+.courseDetail_card{
+    background-color: antiquewhite;
+    width: 40%;
+    height:30rem;
+    margin:auto;
+    text-align: center;
+}
+.courseDetail_img{
+    height: 60%;
+    background-color: aquamarine;
+}
+.courseDetail_course-button{
+    width:100%;
+    background-color: red;
+    color:white;
+}
+#courseDetail_viewButton{
+    position: relative;
+    top: -10rem;
+    left: 0.5em;
+    border-radius: 50%;
+    height: 2.5em;
+    /* border: 1px solid #7e7ebf; */
+    background: rgba(255,255,255,0);
+ }
+ .courseDetail_img >img{
+    height: 18rem;
+    width: 34rem;
+    object-fit: fill;
+
+ }
+
+ .courseDetail_closeButton{
+    position: absolute;
+    right: 5rem;
+ }

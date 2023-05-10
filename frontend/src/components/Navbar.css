@@ -23,7 +23,12 @@ ul{
 }
 .logout{
     padding-left: 0%;
-    margin-left: .4em;
+    /* margin-left: .4em; */
+    position: absolute;
+    right: 1em;
+}
+.dashboard{
+    
 }
 ul li{
     float:left;

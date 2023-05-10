@@ -18,6 +18,9 @@ const courseSchema = new Schema({
     thumbnail:{
         type: String,
     },
+    courselink:{
+        type: String,
+    },
     price:{
         type:Number,
         required:true

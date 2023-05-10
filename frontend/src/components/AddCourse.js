@@ -10,6 +10,7 @@ const AddCourse=()=>{
        author: "",
        description: "",
        thumbnail: "",
+       courselink: "",
        price:"",
      });
   const token = localStorage.getItem("auth_token");
@@ -60,8 +61,10 @@ const AddCourse=()=>{
          console.log(e)});
      };
   return (
+  <div>
+    <h2 id="add-title">add course</h2>
   <div id="form-container">
-    <h2 className="add-title">New course</h2>
+
       <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="name">Name</label>
@@ -104,6 +107,16 @@ const AddCourse=()=>{
               />
             </div>
             <div className="form-group">
+              <label htmlFor="name">link</label>
+              <input
+                type="text"
+                className="form-control"
+                id="courselink"
+                value={form.courselink}
+                onChange={(e) => updateForm({ courselink: e.target.value })}
+              />
+            </div>
+            <div className="form-group">
               <label htmlFor="price">price</label>
               <input
                 type="text"
@@ -121,6 +134,7 @@ const AddCourse=()=>{
               />
             </div>
           </form>
+      </div>
       </div>
       );
 }

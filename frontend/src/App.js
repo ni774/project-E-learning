@@ -11,6 +11,7 @@ import About from "./components/navcomponent/About"
 // import Protectedroute from "./components/Protectedroute";
 import {Navigate} from 'react-router-dom';
 import Dashboard from "./components/navcomponent/Dashboard";
+import CourseDetail from "./components/Course/CourseDetail";
 
 const App = () => {
   return (
@@ -23,9 +24,6 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
 
-        {/* <Route path="/add/*" element={<Protectedroute element={<AddCourse />} />} />
-        <Route path="/couseslist" element={<Protectedroute element={<Courseslist />} />} />
-        <Route path="/logout" element={<Protectedroute element={<Logout />} />} /> */}
 
         <Route
           path="/add"
@@ -56,6 +54,14 @@ const App = () => {
           element={
             <ProtectedRoute>
               <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+         <Route
+          path="/coursedetail"
+          element={
+            <ProtectedRoute>
+              <CourseDetail  />
             </ProtectedRoute>
           }
         />

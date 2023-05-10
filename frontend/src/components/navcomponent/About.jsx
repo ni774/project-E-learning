@@ -7,9 +7,9 @@ import img3 from "../img/img3.jpg" ;
 
 export default function About() {
     const images = [
-        { url: img1 },
+        // { url: img1 },
         { url: img2 },
-        { url: img3 },
+        // { url: img3 },
         
       ];
     return (

@@ -45,6 +45,7 @@ const addCourse = async(req,res,next)=>{
             author,
             description,
             thumbnail,
+            courselink,
             price
         });
         console.log(course);
