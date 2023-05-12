@@ -31,6 +31,6 @@
  }
 
  .courseDetail_closeButton{
-    position: absolute;
-    right: 5rem;
+    position: relative;
+    right: -17rem;
  }

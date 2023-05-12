@@ -14,15 +14,7 @@ const AddCourse=()=>{
        price:"",
      });
   const token = localStorage.getItem("auth_token");
-    //  const handleChange=(e)=>{                
-    //   // e.persist();
-    //    setForm((prevState)=>({
-    //      ...prevState,
-    //      [e.name]:e.value
-         
-    //    }))
-       
-    //  };
+    
     function updateForm(value) {
            return setForm((prev) => {
              return { ...prev, ...value };
@@ -30,14 +22,7 @@ const AddCourse=()=>{
     }
 
       const sendRequest = async()=>{
-      //   await axios.post("http://localhost:5000/courses",{
-      //     name:String(form.name),
-      //     author:String(form.author),
-      //     description:String(form.description),
-      //     price:Number(form.price)
-      //   }).then(res=>res.data).catch(error => {
-      //     console.log(error)
-      // });
+      
       await fetch("http://localhost:5000/courses/", {
         method: "POST",
         headers: {
