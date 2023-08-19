@@ -1,0 +1,32 @@
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgb(201, 186, 186);
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  form {
+    margin-bottom: 20px;
+  }
+  
+  footer {
+    background-color: #f8f9fa;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .footer-name {
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .footer-email,
+  .footer-helpline {
+    margin-bottom: 5px;
+    font-size: 14px;
+  }
+  

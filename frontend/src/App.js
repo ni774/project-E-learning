@@ -10,8 +10,11 @@ import Register from "./components/navcomponent/Register";
 import About from "./components/navcomponent/About"
 // import Protectedroute from "./components/Protectedroute";
 import {Navigate} from 'react-router-dom';
-import Dashboard from "./components/navcomponent/Dashboard";
+import Dashboard from "./components/user/Dashboard";
+import AdminDashboard from "./components/Admin/AdminDashboard";
 import CourseDetail from "./components/Course/CourseDetail";
+import ContactPage from "./components/navcomponent/ContactPage"
+import { useAuth } from './context/auth';
 
 const App = () => {
   return (
@@ -23,6 +26,7 @@ const App = () => {
         <Route path="/about" element={<About />} exact />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/contact" element={<ContactPage />} />
 
 
         <Route
@@ -50,11 +54,19 @@ const App = () => {
           }
         />
         <Route
-          path="/dashboard"
+          path="/dashboard/user"
           element={
             <ProtectedRoute>
               <Dashboard />
             </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/dashboard/admin"
+          element={
+            <AdminProtectedRoute>
+              <AdminDashboard />
+            </AdminProtectedRoute>
           }
         />
          <Route
@@ -73,8 +85,13 @@ const App = () => {
 };
 
 function ProtectedRoute({ children }) {
-  let isAuthenticated = localStorage.getItem('login');
-    //  let isAuthenticated=true;
+  let isAuthenticated = localStorage.getItem('login') === 'true';
+  return isAuthenticated ? children : <Navigate to="/login" />;
+}
+function AdminProtectedRoute({ children }) {
+  const [auth, Setauth] = useAuth();
+  let isAuthenticated = auth && auth.user && auth.user.role ===1;
+  
   return isAuthenticated ? children : <Navigate to="/login" />;
 }
 export default App;

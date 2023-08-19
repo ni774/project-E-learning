@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import { Link, useNavigate } from "react-router-dom";
 // import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 // import { async } from "@firebase/util";
+import {useAuth} from "../../context/auth";
 import "./login.css";
 
 export default function Login() {
@@ -14,14 +15,16 @@ export default function Login() {
       password: "",
     }
   );
+  const [auth, setAuth] = useAuth();
   const [errorMsg, setErorrMsg] = useState("");
+  
   function updateUser(value) {
 
     return setValues((prev) => {
       return { ...prev, ...value };
     });
   }
-
+ 
   const sendRequest = async () => {
     try {
       const res = await fetch("http://localhost:5000/users/login", {
@@ -37,10 +40,18 @@ export default function Login() {
       else {
         const data = await res.json();
         console.log("response is heare", data);
-        localStorage.setItem("auth_token",data.token);
-        window.alert("login succesfully");
-        localStorage.setItem("login",true);
-        history('/dashboard');
+        setAuth({
+          ...auth,
+          user:data.user,
+          token:data.token,
+        })
+        // localStorage.setItem("user",data.user);
+        localStorage.setItem('login','true');
+
+        // window.alert("login succesfully");
+        localStorage.setItem("auth_token",data.token); 
+        localStorage.setItem('auth',JSON.stringify(data));
+        history('/dashboard/user');
         window.location.reload();
        
       }
@@ -69,8 +80,8 @@ export default function Login() {
 
   };
 return (
-  <div id="form-container">
-
+  <div id="login-body">
+    <div className="login-formContainer">
     <form onSubmit={handleSubmitButton}>
       <h1>sign in</h1>
       <div className="mb-3">
@@ -103,11 +114,12 @@ return (
         />
       </div>
       <div>create Account <Link to="/register">Register</Link></div>
+      <div>forgot password <Link to="/reset_password">Reset</Link></div>
       <p>{errorMsg}</p>
     </form>
-
-
   </div>
+
+</div>
 
 );
 }

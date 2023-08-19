@@ -1,11 +1,13 @@
 .courseDetail_card{
     background-color: antiquewhite;
-    width: 40%;
+    width: 80%;
+    max-width: 593px;
     height:30rem;
     margin:auto;
     text-align: center;
 }
 .courseDetail_img{
+    width: 100%;
     height: 60%;
     background-color: aquamarine;
 }
@@ -25,7 +27,7 @@
  }
  .courseDetail_img >img{
     height: 18rem;
-    width: 34rem;
+    width: 100%;
     object-fit: fill;
 
  }

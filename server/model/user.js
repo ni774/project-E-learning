@@ -18,6 +18,10 @@ const userSchema = new Schema({
     required: true,
     minlength: 8,
   },
+  role:{
+    type: Number,
+    default:0,
+  }
 //   courses: [{ type: mongoose.Types.ObjectId, ref: "Course", required: true }],
 },
 {timestamps:true}

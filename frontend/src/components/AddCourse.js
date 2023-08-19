@@ -11,9 +11,10 @@ const AddCourse=()=>{
        description: "",
        thumbnail: "",
        courselink: "",
-       price:"",
+       price: ""
      });
   const token = localStorage.getItem("auth_token");
+  console.log("token is ",token);
     
     function updateForm(value) {
            return setForm((prev) => {
@@ -23,10 +24,11 @@ const AddCourse=()=>{
 
       const sendRequest = async()=>{
       
-      await fetch("http://localhost:5000/courses/", {
+      await fetch("http://localhost:5000/courses/add", {
         method: "POST",
         headers: {
-          'Authorization': `Bearer ${token}`
+          "Content-Type": "application/json",
+          'Authorization': `${token}`
         },
         body: JSON.stringify(form),
       })
@@ -40,9 +42,12 @@ const AddCourse=()=>{
 
      const handleSubmit=(e)=>{
        e.preventDefault();
-       console.log(form);
+       console.log("form is",form);
        sendRequest();
-       sendRequest().then(()=>history('/')).catch(e=>{
+       sendRequest().then(()=>{
+        window.alert("successfully created course");
+        history('/')}
+        ).catch(e=>{
          console.log(e)});
      };
   return (

@@ -11,7 +11,7 @@ function Home(){
                 <h6>We belief in Education</h6>
             </div>
         
-            <div className="home-button">
+            <div className="home-button view_course">
                 <Link className="home_link" aria-current="page" to="/courseslist">view courses</Link>
             </div>
                 

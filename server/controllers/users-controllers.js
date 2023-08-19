@@ -4,23 +4,49 @@ const jwt= require('jsonwebtoken');
 // const cookieParser =require('cookie-parser');
 const bcrypt = require('bcryptjs');
 
-const getAllUser = async (req, res, next) => {
-  let users;
-  try {
-    users = await User.find();
-  } catch (err) {
-    console.log(err);
-  }
-  if (!users) {
-    return res.status(404).json({ message: "No Users Found" });
-  }
-  return res.status(200).json({
-    success: true,
-    data: users,
-    err: {},
-    message: "all users fetched"
- });
-};
+// const getAllUser = async (req, res, next) => {const addCourse = async(req,res,next)=>{
+//   //get data from req means frontend
+//  const {name, author, description, thumbnail, courselink, price}=req.body;
+//  let course;
+//  //make object to push in database
+//  console.log("body",req.body);
+//  try{
+//      course= new Course({
+//          name,
+//          author,
+//          description,
+//          thumbnail,
+//          courselink,
+//          price
+//      });
+//      console.log("here is course",course);
+//      await course.save();
+//  } catch(err){
+//      console.log(err);
+//  }
+
+//  if(!course){
+//      return res.status(500).json({message:"unable to add"});
+//  }
+//  return res.status(201).json({course});
+ 
+// };
+//   let users;
+//   try {
+//     users = await User.find();
+//   } catch (err) {
+//     console.log(err);
+//   }
+//   if (!users) {
+//     return res.status(404).json({ message: "No Users Found" });
+//   }
+//   return res.status(200).json({
+//     success: true,
+//     data: users,
+//     err: {},
+//     message: "all users fetched"
+//  });
+// };
 
    //Registering user
 const signup = async (req, res, next) => {
@@ -98,7 +124,12 @@ const login = async (req, res) => {
           token: token,
           err:{},
           message: "Login Successful",
-          // user: existingUser
+          user: {
+            email: existingUser.email,
+            role: existingUser.role,
+            name: existingUser.name,
+
+          },
         });
       } catch(err){
         console.log(err);
@@ -186,7 +217,7 @@ const getUserbymail =async (req,res)=>{
 
 exports.signup = signup;
 exports.login = login;
-exports.getAllUser=getAllUser;
+// exports.getAllUser=getAllUser;
 exports.deleteUser = deleteUser;
 exports.getById = getById;
 exports.getUserbymail = getUserbymail;

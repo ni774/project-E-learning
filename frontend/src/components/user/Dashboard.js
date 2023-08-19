@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import {useAuth} from "../../context/auth";
 
 function Dashboard() {
   const [user, setUser] = useState(null);
   const token = localStorage.getItem('auth_token');
+  const [auth, setAuth] = useAuth();
+
 
   useEffect(() => {
 
@@ -20,18 +23,20 @@ function Dashboard() {
   }, []);
 
   if (!user) {
-    return <div class="d-flex justify-content-center">
-      <div class="spinner-border" role="status">
-        <span class="sr-only">Loading...</span>
+    return <div className="d-flex justify-content-center">
+      <div className="spinner-border" role="status">
+        <span className="sr-only">Loading...</span>
       </div>
     </div>
   }
 
   return (
-    <div style={{ color: "white" }}>
+    <div>
       {console.log(user)}
       <center><h2>Welcome back: {user.name}</h2></center>
       <h1>Email: {user.email}</h1>
+     
+      <div>{JSON.stringify(auth,null,4)}</div>
       {/* <p>Phone: {user.phone}</p> */}
       <div className="home-button">
         <Link className="home_link" aria-current="page" to="/courseslist">view courses</Link>

@@ -1,4 +1,6 @@
 const Course = require("../model/Course");
+const fs = require("fs");
+
 
 
 const getAllCourses = async(req,res,next)=>{
@@ -34,11 +36,23 @@ const getById = async(req,res,next)=>{
     return res.status(200).json({course});
 }
 
-const addCourse = async(req,res,next)=>{
+const addCourse = async(req,res)=>{
      //get data from req means frontend
-    const{name,author,description,thumbnail,price}=req.body;
+    const {name, author, description, courselink, price}= req.fields;
+    const {thumbnail} = req.files;
+    if(!name || !auther || !description || !courselink || !price){
+        return res.status(500).send({
+            error:"all field is required"
+        })
+    }
+    if(!thumbnail && thumbnail.size >1000000){
+        return res.status(500).send({
+            error: 'photo is required and size should be less than 1mb'
+        })
+    }
     let course;
     //make object to push in database
+    console.log("body",req.body);
     try{
         course= new Course({
             name,
@@ -48,10 +62,17 @@ const addCourse = async(req,res,next)=>{
             courselink,
             price
         });
-        console.log(course);
+        console.log("here is course",course);
         await course.save();
-    } catch(err){
+    } catch(error){
         console.log(err);
+        res.status(500).send({
+            success: false,
+            error,
+            message: "error is creating course"
+        })
+       
+
     }
 
     if(!course){
@@ -106,11 +127,31 @@ const deleteCourse= async(req,res)=>{
     }
   }
 
+  const searchProduct = async (req,res)=>{
+      try{
+        const {keyword} = req.params;
+        const result = await Course.find({
+            $or: [
+                {name:{$regex :keyword, $options: "i"}},
+                {description: {$regex :keyword, $option:"i"}}
+            ]
+        }).select("-photo");
+        res.json(results);
+      } catch(err){
+          console.log(err);
+          res.status(400).send({
+              success: false,
+              message: "error in search product",
+              err,
+          })
+      }
+  };
 
 
 
 exports.getAllCourses = getAllCourses;
 exports.addCourse = addCourse;
 exports.getById = getById;
-exports.updateCourse=updateCourse;
-exports.deleteCourse= deleteCourse;
+exports.updateCourse = updateCourse;
+exports.deleteCourse = deleteCourse;
+exports.searchProduct = searchProduct;

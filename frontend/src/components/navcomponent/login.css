@@ -2,30 +2,45 @@
 * {
   box-sizing: border-box;
 }
-body {
+#login-body {
   background-image: url("../img/bg4.jpg");
   background-size: cover;
-  /* min-height: 80vh; */
-  height: 100%;
-  display: flex;
+  min-height: 91vh;
+  width: 100%;
   font-weight: 400;
-  /* overflow: hidden; */
   font-family: 'Fira Sans', sans-serif;
 }
-#form-container{
+.login-formContainer{
     background-color: white;
-    margin: 4em auto;
+    margin: 2vh 0;
     display: flex;
-    width: 30em;
-    height: 27em;
+    width: 35%;
+    max-width: 35vw;
+    min-width: 220px;
+    min-height: 75vh;
     border-radius: 2em;
     align-items: center;
     justify-content: center;
-    padding: 0;
     position: relative;
-    left: 15em;
+    left: 55%;
+    top: 2em;
 }
 form{
     padding: 0;
 
+}
+
+
+
+@media screen and (max-width:640px){
+  #login-body{
+    display: flex;
+    align-items: center;
+  }
+  .login-formContainer{
+    max-height: 45vh;
+    min-width: 262px;
+    position: relative;
+    left: 10%;
+  }
 }
