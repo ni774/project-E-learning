@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useLocation } from "react-router-dom";
-import "./coursedetail.css";
+import "./style/coursedetail.css";
 
 export default function CourseDetail() {
   const location = useLocation();

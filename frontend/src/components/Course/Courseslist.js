@@ -1,35 +1,43 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Courseslist.css";
+import "./style/coursesList.css";
 import CourseDetail from "./CourseDetail";
+import Record from "./Record";
 
-const Record = (props) => (
-  <div className="card">
-    <div className="img">
-      <img src="https://rb.gy/3p0ha" alt=" error " />
-    </div>
-    <h1>{props.record.name}</h1>
-    <h6 id="description">{props.record.description}</h6>
-    <h6 id="auther">{props.record.author}</h6>
-    <h2>
-      <span>&#8377;</span>
-      {props.record.price}
-    </h2>
-    <button
-      className="course-button"
-      onClick={() => props.onClick(props.record)}
-      
-    >
-      viewCourse
-    </button>
-  </div>
-);
 
-export default function Courseslist() {
-  const [courses, setcourses] = useState([]);
+// const Record = (props) => {
+//   console.log("record", props);
+//   //* add baseurl in img(thumbnail);
+//   let img = `http://localhost:5000/courses/photo/${props.record._id}`;
+//   console.log("record id", img);
+//   return (
+//     <div className="card">
+//       <div className="img">
+//         <img src={img} alt=" error " />
+//       </div>
+//       <h1>{props.record.name}</h1>
+//       <h6 id="description">{props.record.description}</h6>
+//       <h6 id="auther">{props.record.author}</h6>
+//       <h2>
+//         <span>&#8377;</span>
+//         {props.record.price}
+//       </h2>
+//       <button
+//         className="course-button"
+//         onClick={() => props.onClick(props.record)}
+//       >
+//         view
+//       </button>
+//     </div>
+//   );
+// };
+
+export default function Courseslist({ courses, setcourses }) {
+  // const [courses, setcourses] = useState([]);
   const history = useNavigate();
   const token = localStorage.getItem("auth_token");
   console.log("token-->", token);
+
   useEffect(() => {
     async function getCourses() {
       try {
@@ -63,24 +71,20 @@ export default function Courseslist() {
   }, []);
 
   function handleViewCourse(course) {
-    history("/coursedetail", { state: course });
+    history("/gallary", { state: course });
   }
 
   function recordList() {
     return courses.map((value) => {
       return (
-        <Record
-          record={value}
-          key={value._id}
-          onClick={handleViewCourse}
-        />
+        <Record record={value} key={value._id} onClick={handleViewCourse} />
       );
     });
   }
 
   return (
     <div className="course-container">
-      <h2>course---></h2>
+      <h2>course---</h2>
       <div className="card-body">{recordList()}</div>
     </div>
   );

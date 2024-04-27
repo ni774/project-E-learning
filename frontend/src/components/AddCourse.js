@@ -1,61 +1,71 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import "./navcomponent/login.css";
-import "./addCourse.css";
+import "./navcomponent/style/login.css";
+import "./style/addCourse.css";
+import axios from "axios";
 
-const AddCourse=()=>{
+const AddCourse = () => {
   const history = useNavigate();
   const [form, setForm] = useState({
-       name: "",
-       author: "",
-       description: "",
-       thumbnail: "",
-       courselink: "",
-       price: ""
-     });
+    name: "",
+    creator: "",
+    description: "",
+    thumbnail: null,
+    courselink: "",
+    price: ""
+  });
+
   const token = localStorage.getItem("auth_token");
-  console.log("token is ",token);
-    
-    function updateForm(value) {
-           return setForm((prev) => {
-             return { ...prev, ...value };
-           });
+
+  const formData = new FormData();
+
+  formData.append("name", form.name);
+  formData.append("creator", form.creator);
+  formData.append("description", form.description);
+  formData.append("thumbnail", form.thumbnail);
+  formData.append("courselink", form.courselink);
+  formData.append("price", form.price);
+
+  const updateForm = (value) => {
+    setForm((prev) => {
+      return { ...prev, ...value };
+    });
+  };
+
+  const sendRequest = async () => {
+    try { 
+      const response = await axios.post(
+        "http://localhost:5000/courses/add",
+        formData,
+        {
+          headers: {
+            Authorization: `${token}`,
+            "Content-Type": "multipart/form-data", // Important for handling file uploads
+          },
+        }
+      );
+
+      console.log("response", response);
+
+      // window.alert("Successfully created course");
+      // history("/"); // Navigate to the desired route after successful submission
+    } catch (error) {
+      window.alert(error);
+      console.log("Cannot add", error);
     }
+  };
 
-      const sendRequest = async()=>{
-      
-      await fetch("http://localhost:5000/courses/add", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          'Authorization': `${token}`
-        },
-        body: JSON.stringify(form),
-      })
-      .catch(error => {
-        window.alert(error);
-        console.log("can not add",error);
-        
-        return;
-      });
-      }
-
-     const handleSubmit=(e)=>{
-       e.preventDefault();
-       console.log("form is",form);
-       sendRequest();
-       sendRequest().then(()=>{
-        window.alert("successfully created course");
-        history('/')}
-        ).catch(e=>{
-         console.log(e)});
-     };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("form is", form);
+    sendRequest();
+  };
   return (
   <div>
     <h2 id="add-title">add course</h2>
   <div id="form-container">
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} enctype="multipart/form-data">
             <div className="form-group">
               <label htmlFor="name">Name</label>
               <input
@@ -72,8 +82,8 @@ const AddCourse=()=>{
                 type="text"
                 className="form-control"
                 id="author"
-                value={form.author}
-                onChange={(e) => updateForm({ author: e.target.value })}
+                value={form.creator}
+                onChange={(e) => updateForm({ creator: e.target.value })}
               />
             </div>
             <div className="form-group">
@@ -87,13 +97,12 @@ const AddCourse=()=>{
               />
             </div>
             <div className="form-group">
-              <label htmlFor="name">thumbnail</label>
+              <label htmlFor="thumbnail">Thumbnail</label>
               <input
-                type="text"
+                type="file"
                 className="form-control"
                 id="thumbnail"
-                value={form.thumbnail}
-                onChange={(e) => updateForm({ thumbnail: e.target.value })}
+                onChange={(e) => updateForm({ thumbnail: e.target.files[0] })}
               />
             </div>
             <div className="form-group">

@@ -1,0 +1,64 @@
+
+.main_header{
+    background-image: url("../../../public/bg2.jpg");
+    background-size: 100%;
+    height:93vh;
+    display: flex
+ }
+ 
+ h1{
+     align-items: center;
+     color: blue;
+ }
+ 
+ .home-button{
+     background-color:#ec2b2b;
+     border-radius:1em;
+     display: flex;
+     justify-content: center;
+     width: 20%;
+     max-width: 30vh;
+     min-width: 16vh;
+     height: 8vh;
+     margin: 17em auto;
+    
+    
+ }  
+ 
+  .home_link{
+        height: 100%;
+        width: 100%;
+         text-decoration: none;
+         text-decoration-color: white;
+         color: white;
+         margin: auto;
+         padding: 10px 20px;
+         /* background-color: black; */
+
+         transition: background-color 0.3s, color 0.3s;
+         
+     }
+     .home-button:hover{
+        background-color: bisque;
+     }
+ .home-button:hover .home_link{
+     /* background-color: antiquewhite; */
+     color:red;
+     transition: all .2s ease-in;
+     border-radius:1em;
+    
+ }
+ 
+ .home-content{
+     width: 27em;
+     position: absolute;
+     top: 10em;
+     left: 1em;
+ }
+ .home-content h2{
+     color: yellow;
+ }
+ .home-content h6{
+     color: aliceblue;
+ }
+ 

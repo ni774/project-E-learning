@@ -2,8 +2,8 @@ import React, { useState, useEffect} from "react";
 import { Link, useNavigate } from "react-router-dom";
 // import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 // import { async } from "@firebase/util";
-import {useAuth} from "../../context/auth";
-import "./login.css";
+import {useAuth} from "../../context/Auth";
+import "./style/login.css";
 
 export default function Login() {
   // const auth=getAuth();
@@ -98,7 +98,7 @@ return (
         <label>
           password:
                     </label>
-        <input type="text" placeholder="enter your password"
+        <input type="password" placeholder="enter your password"
           className="form-control"
           id="password"
           value={values.password}

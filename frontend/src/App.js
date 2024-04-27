@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import AddCourse from "./components/AddCourse";
@@ -13,10 +13,13 @@ import {Navigate} from 'react-router-dom';
 import Dashboard from "./components/user/Dashboard";
 import AdminDashboard from "./components/Admin/AdminDashboard";
 import CourseDetail from "./components/Course/CourseDetail";
+import Gallery from "./components/Course/Gallary.js";
 import ContactPage from "./components/navcomponent/ContactPage"
-import { useAuth } from './context/auth';
+import { useAuth } from './context/Auth.js';
 
 const App = () => {
+  const [courses,setcourses] = useState([]);
+
   return (
     <div>
       <Navbar />
@@ -40,10 +43,11 @@ const App = () => {
         <Route
           path="/courseslist"
           element={
-            <ProtectedRoute>
-              <Courseslist />
-            </ProtectedRoute>
+            // <ProtectedRoute>
+              <Courseslist courses={courses} setcourses={setcourses} />
+            // </ProtectedRoute>
           }
+          exact
         />
         <Route
           path="/logout"
@@ -69,11 +73,19 @@ const App = () => {
             </AdminProtectedRoute>
           }
         />
-         <Route
+        <Route
           path="/coursedetail"
           element={
             <ProtectedRoute>
               <CourseDetail  />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/gallary"
+          element={
+            <ProtectedRoute>
+              <Gallery />
             </ProtectedRoute>
           }
         />

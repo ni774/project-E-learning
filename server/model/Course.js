@@ -7,7 +7,7 @@ const courseSchema = new Schema({
         type:String,
         required:true
     },
-    author:{
+    creator:{
         type:String,
         required:true
     },
@@ -15,7 +15,7 @@ const courseSchema = new Schema({
         type:String,
         required:true
     },
-    thumbnail:{
+    thumbnailLink:{
         type: String,
     },
     courselink:{
@@ -30,4 +30,5 @@ const courseSchema = new Schema({
 {timestamps: true}
 );
 
+courseSchema.index({ name: 1 });
 module.exports = mongoose.model("Course",courseSchema);

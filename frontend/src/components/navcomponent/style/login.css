@@ -3,7 +3,7 @@
   box-sizing: border-box;
 }
 #login-body {
-  background-image: url("../img/bg4.jpg");
+  background-image: url("../../../../public/bg4.jpg");
   background-size: cover;
   min-height: 91vh;
   width: 100%;

@@ -1,6 +1,7 @@
 import React from 'react'
 import SimpleImageSlider from "react-simple-image-slider";
-import "./about.css";
+import "./style/about.css";
+import "../../../src/input.css"
 import img1 from "../img/img1.jpg";
 import img2 from "../img/img2.jpg";
 import img3 from "../img/img3.jpg";
@@ -14,27 +15,31 @@ export default function About() {
     ];
     return (
         <div className="about-container ">
-            <div id="about-p1" className="about_p1_layout">
-                <span>industry Expert !</span>
-                <div id="about-content">
+            /*............top section..........*/
+            <div className='about-layout'>
+                <SimpleImageSlider
+                        width="100%"
+                        height={500}
+                        images={images}
+                        showBullets={true}
+                        showNavs={true}
+                        autoPlay={true}
+                        autoPlayDelay={10}
+                        useGPURender={true}
+                />
 
-                    <h1>create your beutiful career</h1>
-                    <h6> Quickly create a professional website that looks stunning on
-                    desktops, tablets and even mobile devices with Website.com website builder.
-                    </h6>
+                <div className=' absolute top-52 left-64 w-72'>
+                    <span className='font-serif text-5xl text-red-500'> <h1>Guide up!</h1></span>
+                    <div id="about-content" className='text-white mt-8'>
+                        <h1 className='text-red-600'> Quickly Learn whatever you want to </h1> 
+                        <h2> that looks stunning when student learn from E-learning</h2>
+                        <h6>Learn in Fast pace</h6>
+                        
+                    </div>
                 </div>
             </div>
-            <div id="about-p2">
-                <SimpleImageSlider
-                    width="100%"
-                    height={350}
-                    images={images}
-                    showBullets={true}
-                    showNavs={true}
-                    autoPlay={true}
-                />
-               
-            </div>
+
+            {/*............bottom section..........*/}
             <div className="about-footer">
                 <div className="about-footer-list" id="services-list">
                     <ul>

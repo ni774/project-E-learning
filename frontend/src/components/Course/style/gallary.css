@@ -1,0 +1,8 @@
+@media screen and (max-width: 600px)  {
+    .gallary{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+   
+}

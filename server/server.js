@@ -15,6 +15,7 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());  
+app.use(express.urlencoded({ extended: true }));
 app.use("/courses",courserouter); //localhost:5000/courses
 app.use("/users",userrouter);  //localhost:5000/users
 

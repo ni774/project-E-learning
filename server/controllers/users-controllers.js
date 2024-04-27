@@ -118,7 +118,7 @@ const login = async (req, res) => {
   else{
       try{
         const token=await generateToken(existingUser.email);
-      
+        console.log('user logged in');
         return res.status(200).json({
           success:true,
           token: token,

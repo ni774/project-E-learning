@@ -1,6 +1,6 @@
 import React,{useEffect} from 'react'
 import {useNavigate} from 'react-router-dom';
-import {useAuth} from "../../context/auth";
+import {useAuth} from "../../context/Auth";
 
 export default function Logout() {
     const hostory = useNavigate();

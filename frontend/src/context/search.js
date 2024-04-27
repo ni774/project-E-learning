@@ -1,32 +1,37 @@
-import React,{useState, useEffect, useContext, createContext} from "react";
+import React,{useState} from 'react'
+import axios from 'axios';
 
-const AuthContext = createContext();
+function Search({courses,setcourses}) {
+    const [searchInput, setSearchInput] = useState("");
 
-const AuthProvider = ({children})=>{
-    const [auth, setAuth] = useState({
-        user : null,
-        token : "",
-    });
-    useEffect(()=>{
-        const data = localStorage.getItem('auth');
-        if(data){
-            const parseData = JSON.parse(data);
-            setAuth({
-                ...auth,
-                user: parseData.user,
-                token: parseData.token,
-            });
+    const handleChange = async (e) => {
+        try {
+          setSearchInput(e.target.value);
+        //   const response = await axios.get(`http://localhost:5000/courses//search?keyword=${e.target.value}`);
+          const response = await fetch(`http://localhost:5000/courses/search?course=${e.target.value}`, {
+          method: "get",
+        //   headers: {
+        //     Authorization: `${token}`,
+        //   },
+        });
+          console.log(response);
+        } catch (error) {
+          console.log(error);
         }
-    },[]);
+    };
+    
 
-    return(
-        <AuthContext.Provider value={[auth, setAuth]}>
-            {children}
-        </AuthContext.Provider>
-    );
-};
+  return (
+    <div>
+        <form className="d-flex" role="search">
+            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" 
+                onChange={handleChange}
+                value={searchInput}
+            />
+            <button className="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    </div>
+  )
+}
 
-//custom hook
-const useAuth = () =>useContext(AuthContext);
-
-export {useAuth, AuthProvider};
+export default Search;

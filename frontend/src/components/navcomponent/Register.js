@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom'
-import "./login.css";
+import "./style/login.css";
 
 
 export default function Register() {

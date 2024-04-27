@@ -1,9 +1,9 @@
 .container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: rgb(201, 186, 186);
-  }
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgb(201, 186, 186);
+}
   
   h1 {
     text-align: center;
@@ -24,9 +24,15 @@
     font-weight: bold;
   }
   
-  .footer-email,
-  .footer-helpline {
-    margin-bottom: 5px;
-    font-size: 14px;
+.footer-email,
+.footer-helpline {
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+@media only screen and (min-width: 600px){
+  .contact-container{
+    display: flex;
   }
+}
   

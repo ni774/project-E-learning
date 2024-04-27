@@ -1,14 +1,17 @@
 const Course = require("../model/Course");
 const fs = require("fs");
+const { log } = require("console");
+const path = require("path");
 
 
 
-const getAllCourses = async(req,res,next)=>{
+const getAllCourses = async(req,res)=>{
+    console.log("getall course")
     let courses;
     try {
-        courses = await Course.find()
+        courses = await Course.find();
 
-        // console.log(courses);
+       
       
     } catch(err){
         console.log(err);
@@ -17,7 +20,7 @@ const getAllCourses = async(req,res,next)=>{
      if(!courses){
          return res.status(404).json({message:"No courses found"})
      }
-     return res.status(200).json({courses});
+     return res.status(200).send({courses});
 
 }
 
@@ -36,49 +39,80 @@ const getById = async(req,res,next)=>{
     return res.status(200).json({course});
 }
 
+const getphoto = async(req, res) =>{
+  const id = req.params.id;
+  let course;
+  try{
+   course = await Course.findById(id).select("thumbnailLink");
+  //  console.log("yes",course,"yes2", course.thumbnailLink);
+  const photopath = course.thumbnailLink;
+   if(fs.existsSync(photopath)){
+    res.sendFile(path.resolve(photopath))
+   } else{
+    return res.status(404).json({message:"No photo found"});
+   }
+
+  }catch(err){
+    console.log(err);
+  }
+}
+
 const addCourse = async(req,res)=>{
      //get data from req means frontend
-    const {name, author, description, courselink, price}= req.fields;
-    const {thumbnail} = req.files;
-    if(!name || !auther || !description || !courselink || !price){
-        return res.status(500).send({
-            error:"all field is required"
-        })
-    }
-    if(!thumbnail && thumbnail.size >1000000){
-        return res.status(500).send({
-            error: 'photo is required and size should be less than 1mb'
-        })
-    }
-    let course;
-    //make object to push in database
-    console.log("body",req.body);
-    try{
-        course= new Course({
+     try {
+    
+          const { name, creator, description, courselink, price } = req.body;
+          console.log("data",name,creator,description);
+          const thumbnail = req.file; // Access the file information from multer
+        
+          if (!name || !creator || !description || !courselink || !price) {
+            return res.status(400).json({
+              success: false,
+              error: 'All fields are required',
+            });
+          }
+    
+          if (!thumbnail || thumbnail.size > 1000000) {
+            return res.status(400).json({
+              success: false,
+              error: 'Thumbnail is required and size should be less than 1mb',
+            });
+          }
+    
+          // Make an object to push into the database
+          thumbnail.path = thumbnail.path.replace(/\\/g, '/'); // Replace backslashes with forward slashes
+          const course = new Course({
             name,
-            author,
+            creator,
             description,
-            thumbnail,
+            thumbnailLink: thumbnail.path, // Save only the filename in the database
             courselink,
-            price
+            price,
+          });
+          console.log("course: " + course);
+    
+          await course.save();
+          if(!course){
+            return res.status(500).json({message:"unable to add"});
+         }
+          return res.status(201).json({
+            success: true,
+            data: course,
+            message: "successfully added"
+          });
+        
+      } catch (error) {
+        console.error('Error creating course:', error);
+        console.log("error", error);
+        res.status(500).json({
+          success: false,
+          error,
+          message: 'Error creating course',
         });
-        console.log("here is course",course);
-        await course.save();
-    } catch(error){
-        console.log(err);
-        res.status(500).send({
-            success: false,
-            error,
-            message: "error is creating course"
-        })
-       
+      }
 
-    }
-
-    if(!course){
-        return res.status(500).json({message:"unable to add"});
-    }
-    return res.status(201).json({course});
+    
+    // return res.status(201).json({course});
     
 };
         
@@ -129,8 +163,8 @@ const deleteCourse= async(req,res)=>{
 
   const searchProduct = async (req,res)=>{
       try{
-        const {keyword} = req.params;
-        const result = await Course.find({
+        const {keyword} = req.params || req.query.course;
+        const results = await Course.find({
             $or: [
                 {name:{$regex :keyword, $options: "i"}},
                 {description: {$regex :keyword, $option:"i"}}
@@ -152,6 +186,7 @@ const deleteCourse= async(req,res)=>{
 exports.getAllCourses = getAllCourses;
 exports.addCourse = addCourse;
 exports.getById = getById;
+exports.getphoto = getphoto;
 exports.updateCourse = updateCourse;
 exports.deleteCourse = deleteCourse;
 exports.searchProduct = searchProduct;

@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import "./Navbar.css";
+import "./style/navbar.css";
 import logo from "./img/logo1.png";
-import { useAuth } from '../context/auth';
+import { useAuth } from '../context/Auth.js';
+import Search from '../context/Search.js';
+
+
 
 function Navbar() {
   const [userState, setUserState] = useState('logout');
@@ -53,9 +56,6 @@ function Navbar() {
                       </Link>
                     </li>
 
-                    <li>
-                      <Link className="nav-link active" aria-current="page" to="/courseslist" >viewCourse</Link>
-                    </li>
                     {
                       auth && auth.user && auth.user.role === 1?
                       <li>
@@ -66,10 +66,15 @@ function Navbar() {
                    
                     <li><hr className="dropdown-divider" /></li>
                     <li>
-                      <Link className="nav-link active " aria-current="page" to="/logout" >{userState}</Link>
+                      {/* if logedIn then show */}
+                      <Link className="nav-link active " aria-current="page" to="/logout" >{userState}</Link> 
                     </li>
                   </ul>
                 </li> : <li></li>
+                // islogedin? 
+                // <li >
+                 
+                // </li>
             }
             <li className="nav-item">
               <Link className="nav-link active " aria-current="page" to="/contact">Contact Us</Link>
@@ -81,10 +86,7 @@ function Navbar() {
                 </li> : <li></li>
             }
           </ul>
-          <form className="d-flex" role="search">
-            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-            <button className="btn btn-outline-success" type="submit">Search</button>
-          </form>
+          <Search/>
         </div>
       </div>
     </nav>

@@ -7,18 +7,21 @@ const dbo = require("../db/conn");
 const auth= require("../middileware/auth");
 const isAdmin = require("../middileware/adminAuth");
 const formidable = require('express-formidable');
+const upload = require("../helper/fileUploadHelper");
 
-router.get("/",auth,coursesController.getAllCourses);
+router.get("/",coursesController.getAllCourses);
 
-router.post("/add",auth,isAdmin,formidable(),coursesController.addCourse);
+router.post("/add",auth,isAdmin,upload.single('thumbnail'),coursesController.addCourse);
 
-router.get("/:id",auth,coursesController.getById);
+router.get("/:id",coursesController.getById);
+
+router.get("/photo/:id",coursesController.getphoto);
 
 router.put("/:id",auth,isAdmin,coursesController.updateCourse);
 
 router.delete("/:id",auth,isAdmin,coursesController.deleteCourse);
 
-router.get("/search/:keyword",auth,coursesController.searchProduct);
+router.get("/search/",coursesController.searchProduct);
 
 
 module.exports = router;
