@@ -27,7 +27,7 @@ function Navbar() {
     <nav className="navbar navbar-expand-lg bg-white">
       <div className="container-fluid">
         {/* <a className="navbar-brand" href="#">Navbar</a> */}
-        <img className="logo" src={logo} width="70" height="50" alt="cant show img" style={{ zIndex: 10 }} />
+        {/* <img className="logo" src={logo} width="70" height="50" alt="cant show img" style={{ zIndex: 10 }} /> */}
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -42,9 +42,10 @@ function Navbar() {
             {
               islogedin ?
                 <li className="nav-item dropdown">
-                  <a className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     User
                   </a>
+                  {/* ....................dropdown.................. */}
                   <ul className="dropdown-menu">
                     <li>
                       <Link
@@ -71,19 +72,24 @@ function Navbar() {
                     </li>
                   </ul>
                 </li> : <li></li>
-                // islogedin? 
-                // <li >
-                 
-                // </li>
             }
+            {
+              islogedin? 
+              <li >
+                <Link className='nav-link active' aria-current="page" to= '/courseslist'>Courses</Link> 
+              </li>: <li></li>
+            }
+
             <li className="nav-item">
               <Link className="nav-link active " aria-current="page" to="/contact">Contact Us</Link>
             </li>
             {
               !islogedin ?
+                
                 <li className="nav-item dashboard">
                   <Link className="nav-link active" aria-current="page" to="/login" >Login</Link>
                 </li> : <li></li>
+              
             }
           </ul>
           <Search/>

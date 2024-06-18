@@ -6,10 +6,6 @@
     display: flex
  }
  
- h1{
-     align-items: center;
-     color: blue;
- }
  
  .home-button{
      background-color:#ec2b2b;

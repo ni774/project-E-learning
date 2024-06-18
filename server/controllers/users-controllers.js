@@ -59,7 +59,6 @@ const signup = async (req, res, next) => {
     existingUser = await User.findOne({ email });
   } catch (err) {
     return console.log(err);
-
   }
   
   if (existingUser) {
@@ -176,6 +175,7 @@ const generateToken=async function(user){
 
 const getById = async(req,res,next)=>{
   const id = req.params.id;
+  console.log("id is " + id);
   let user;
   try{
       user = await User.findById(id);

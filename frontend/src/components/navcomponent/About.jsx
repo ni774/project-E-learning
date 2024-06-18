@@ -15,7 +15,7 @@ export default function About() {
     ];
     return (
         <div className="about-container ">
-            /*............top section..........*/
+            {/*............top section..........*/}
             <div className='about-layout'>
                 <SimpleImageSlider
                         width="100%"
@@ -43,7 +43,7 @@ export default function About() {
             <div className="about-footer">
                 <div className="about-footer-list" id="services-list">
                     <ul>
-                        <li>software Engineering</li>
+                        <li title="faq">software Engineering</li>
                         <li>Block Chain</li>
                         <li>Data science</li>
                         <li>Frontend Development</li>
@@ -64,3 +64,4 @@ export default function About() {
         </div>
     )
 }
+

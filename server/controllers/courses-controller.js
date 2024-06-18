@@ -9,9 +9,7 @@ const getAllCourses = async(req,res)=>{
     console.log("getall course")
     let courses;
     try {
-        courses = await Course.find();
-
-       
+        courses = await Course.find();   
       
     } catch(err){
         console.log(err);
@@ -72,20 +70,21 @@ const addCourse = async(req,res)=>{
             });
           }
     
-          if (!thumbnail || thumbnail.size > 1000000) {
-            return res.status(400).json({
-              success: false,
-              error: 'Thumbnail is required and size should be less than 1mb',
-            });
-          }
+          // if (!thumbnail || thumbnail.size > 1000000) {
+          //   return res.status(400).json({
+          //     success: false,
+          //     error: 'Thumbnail is required and size should be less than 1mb',
+          //   });
+          // }
     
           // Make an object to push into the database
-          thumbnail.path = thumbnail.path.replace(/\\/g, '/'); // Replace backslashes with forward slashes
+            // thumbnail.path =thumbnail ? thumbnail.path.replace(/\\/g, '/'): ''; // Replace backslashes with forward slashes
+          
           const course = new Course({
             name,
             creator,
             description,
-            thumbnailLink: thumbnail.path, // Save only the filename in the database
+            // thumbnailLink: thumbnail.path, // Save only the filename in the database
             courselink,
             price,
           });
@@ -118,12 +117,12 @@ const addCourse = async(req,res)=>{
         
 const updateCourse = async(req,res,next)=>{
     const id = req.params.id;
-    const {name,author,description,price,image}=req.body;
+    const {name,creator,description,price,image}=req.body;
     let course;
     try{
         course = await Course.findByIdAndUpdate(id,{
             name,
-            author,
+            creator,
             description,
             price,
             image
@@ -161,25 +160,38 @@ const deleteCourse= async(req,res)=>{
     }
   }
 
-  const searchProduct = async (req,res)=>{
-      try{
-        const {keyword} = req.params || req.query.course;
-        const results = await Course.find({
-            $or: [
-                {name:{$regex :keyword, $options: "i"}},
-                {description: {$regex :keyword, $option:"i"}}
-            ]
-        }).select("-photo");
-        res.json(results);
-      } catch(err){
-          console.log(err);
-          res.status(400).send({
-              success: false,
-              message: "error in search product",
-              err,
-          })
+const searchProduct = async (req, res) => {
+    console.log("Entered searchProduct function");
+  
+    try {
+      const keyword = req.params.keyword || req.query.keyword;
+      if (!keyword) {
+        return res.status(400).send({
+          success: false,
+          message: "Keyword is required for search",
+        });
       }
+  
+      console.log("Keyword:", keyword);
+  
+      const results = await Course.find({
+        $or: [
+          { name: { $regex: keyword, $options: "i" } },
+          { description: { $regex: keyword, $options: "i" } }
+        ]
+      }).select("-photo");
+  
+      res.json(results);
+    } catch (err) {
+      console.error("Error occurred during search:", err);
+      res.status(500).send({
+        success: false,
+        message: "Error in search product",
+        error: err.message,
+      });
+    }
   };
+  
 
 
 

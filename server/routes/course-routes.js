@@ -9,6 +9,7 @@ const isAdmin = require("../middileware/adminAuth");
 const formidable = require('express-formidable');
 const upload = require("../helper/fileUploadHelper");
 
+router.get("/search/:keyword", coursesController.searchProduct);
 router.get("/",coursesController.getAllCourses);
 
 router.post("/add",auth,isAdmin,upload.single('thumbnail'),coursesController.addCourse);
@@ -21,7 +22,6 @@ router.put("/:id",auth,isAdmin,coursesController.updateCourse);
 
 router.delete("/:id",auth,isAdmin,coursesController.deleteCourse);
 
-router.get("/search/",coursesController.searchProduct);
 
 
 module.exports = router;

@@ -15,7 +15,7 @@ export default function Gallery() {
 		"We will learn DFS of Graph in this problem"
 	);
 	return (
-		<div className=" gallary flex w-11/12 h-full pt-2 border-2">
+		<div className=" gallary bg-black flex  h-dvh pt-2 border-2">
 			<Video
 				link={activeVideoId}
 				title={activeTitle}
